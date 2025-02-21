@@ -1,0 +1,34 @@
+{
+    "name": "ESP32 HUB75 LED MATRIX PANEL DMA Display FM6363",
+    "version": "0.0.1",
+    "description": "An Adafruit GFX compatible library for FM6363 based LED matrix modules which uses DMA",
+    "keywords": "hub75, esp32s3, display, dma, rgb matrix, FM6363",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ocram72nl/ESP32-HUB75-MatrixPanel-DMA-FM6363.git"
+    },
+    "authors": {
+        "name": "Ocram72NL",
+        "url": "https://github.com/ocram72nl/"
+    },
+    "frameworks": [
+        "arduino",
+        "espidf"
+    ],
+    "platforms": [
+        "espressif32"
+    ],
+    "headers": [
+        "ESP32-HUB75-MatrixPanel-DMA.h"
+    ],
+    "examples": [
+        {
+            "name": "Plasma Pattern",
+            "base": "examples/PatternPlasma",
+            "files": [
+                "PatternPlasma.ino",
+                "README.md"
+            ]
+        }
+    ]
+}
