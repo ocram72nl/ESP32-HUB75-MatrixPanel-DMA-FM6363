@@ -85,46 +85,46 @@ enum{FM6363_DMA_ROW_BUFF_CNT = DMA_ROW_BUFF_CNT};
 #endif
 
 #ifndef R1_PIN
-#define R1_PIN 15
+#define R1_PIN 14
 #endif
 #ifndef G1_PIN
-#define G1_PIN 27
+#define G1_PIN 15
 #endif
 #ifndef B1_PIN
-#define B1_PIN 25
+#define B1_PIN 16
 #endif
 #ifndef R2_PIN
 #define R2_PIN 17
 #endif
 #ifndef G2_PIN
-#define G2_PIN 12
+#define G2_PIN 18
 #endif
 #ifndef B2_PIN
-#define B2_PIN 21
+#define B2_PIN 19
 #endif
 #ifndef A_PIN
-#define A_PIN 18
+#define A_PIN 21
 #endif
 #ifndef B_PIN
-#define B_PIN 26
+#define B_PIN 22
 #endif
 #ifndef C_PIN
 #define C_PIN 23
 #endif
 #ifndef D_PIN
-#define D_PIN 19
+#define D_PIN 25
 #endif
 #ifndef E_PIN
-#define E_PIN 16
+#define E_PIN 26
 #endif
 #ifndef LAT_PIN
-#define LAT_PIN 5
+#define LAT_PIN 27
 #endif
 #ifndef OE_PIN
-#define OE_PIN 14
+#define OE_PIN 5
 #endif
 #ifndef CLK_PIN
-#define CLK_PIN 13
+#define CLK_PIN 2
 #endif
 #ifdef ADD_VSYNC_OUT
 #ifndef VSYNC_PIN

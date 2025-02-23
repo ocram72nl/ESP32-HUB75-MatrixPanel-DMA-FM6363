@@ -5,11 +5,8 @@
 #include "ESP32-HUB75-MatrixPanel-DMA-leddrivers.h"
 #include "color_convert.h"
 
-//#define NO_FAST_FUNCTIONS
-
 /***************************************************************************************/
 /* Library Includes!                                                                   */
-//#include <memory>
 #include "esp_heap_caps.h"
 #include "esp32_i2s_parallel_v2.h"
 
@@ -50,8 +47,8 @@ typedef struct{
 typedef uint32_t vbuffer_t;
 enum{
   VB_SIZE = sizeof(vbuffer_t),
-  VB_MBITS = 5,
-  VB_MASK = 31,
+  VB_MBITS = 5,                         // Not referenced/used from anywhere within this library, not needed?
+  VB_MASK = 31,                         // Not referenced/used from anywhere within this library, not needed?
 };
 
 //defining the primary frame buffer

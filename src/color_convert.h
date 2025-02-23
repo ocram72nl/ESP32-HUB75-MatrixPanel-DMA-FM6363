@@ -27,7 +27,6 @@ typedef enum
 
 #define color888to565(r,g,b) color565(r,g,b)
 
-//extern uint16_t Translate8To16Bit[256];
 extern const uint8_t lumConvTab[256];
 enum{BRIGHT_TABLE_SIZE = sizeof(lumConvTab)};
 
