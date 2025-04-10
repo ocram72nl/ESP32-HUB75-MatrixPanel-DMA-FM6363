@@ -450,19 +450,27 @@ bool MatrixPanel_DMA::allocateDMAmemory()
       #ifdef USE_COLORx16
       case -16:
         //two-byte field
-        frame_buffer.row_len = (pixels_per_row*2 + VB_SIZE - 1)/VB_SIZE;
-        frame_buffer.subframe_len = frame_buffer.row_len*m_cfg.mx_height;
-        frame_buffer.len = frame_buffer.subframe_len;
+#ifdef SERIAL_DEBUG
+        Serial.println(F("MatrixPanel_DMA::allocateDMAmemory(): USE_COLORx16"));
+#endif // SERIAL_DEBUG
+        frame_buffer.row_len = (pixels_per_row*2 + VB_SIZE - 1)/VB_SIZE;      // 64
+        frame_buffer.subframe_len = frame_buffer.row_len*m_cfg.mx_height;     // 4096
+        frame_buffer.len = frame_buffer.subframe_len;                         // 64
       break;
       #endif
       default:
         //buffer processing on the user side
+#ifdef SERIAL_DEBUG
+        Serial.println(F("MatrixPanel_DMA::allocateDMAmemory(): Buffer processing on the user side"));
+#endif // SERIAL_DEBUG
         frame_buffer.row_len = 0;
       break;
     }
     //start calculating the size of the shared buffer
     dma_buff_cnt = FM6363_PREFIX_CNT + FM6363_SUFFIX_CNT;
+    // Length of prefix (VSYNC) + suffix (Line sitching using GCLK)
     matrix_buffer_size = (dma_buff.frame_prefix_len*FM6363_PREFIX_CNT + dma_buff.frame_suffix_len*FM6363_SUFFIX_CNT)*SIZE_DMA_TYPE;
+    // Add length of frame buffer
     matrix_buffer_size += (frame_buffer.len*VB_SIZE) << m_cfg.double_buff;
   } else {
     Serial.println("Support SHIFT drivers - disabled!");
@@ -471,6 +479,7 @@ bool MatrixPanel_DMA::allocateDMAmemory()
   }
   dma_buff.all_row_data_cnt = dma_buff.row_data_cnt << m_cfg.double_dma_buff;
   dma_buff_cnt += dma_buff.all_row_data_cnt;
+  // Add space for ...
   matrix_buffer_size += dma_buff.row_data_len*dma_buff.all_row_data_cnt*SIZE_DMA_TYPE + gamma_table_len*sizeof(uint16_t);
 
   size_t heap_free_size = heap_caps_get_free_size(MALLOC_CAP_DMA);
@@ -500,6 +509,7 @@ bool MatrixPanel_DMA::allocateDMAmemory()
     #endif
     return false;
   }
+  // Allocate memory for the two rowBits pointers
   dma_buff.rowBits = (ESP32_I2S_DMA_STORAGE_TYPE**)heap_caps_calloc(dma_buff_cnt,sizeof(void*), MALLOC_CAP_32BIT | MALLOC_CAP_DMA);
   if (dma_buff.rowBits == NULL)
   {
